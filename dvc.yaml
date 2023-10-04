@@ -1,0 +1,21 @@
+stages:
+  ## Splitting data into training and testing data
+  Split_data:
+    cmd: python src/step1_split_data.py
+    deps:
+      - Data/qsar_fish_toxicity.csv
+    outs:
+      - Data/train.csv
+      - Data/test.csv
+  
+  ## Train and evaluate model
+  Train_And_Evaluate_Model:
+   cmd: python src/step2_create_train_pipe.py
+   deps: 
+    - Data/train.csv
+    - Data/test.csv
+   outs:
+    - Model/VotingRegressorModel.joblib
+    - Metrics/metrics.json
+
+

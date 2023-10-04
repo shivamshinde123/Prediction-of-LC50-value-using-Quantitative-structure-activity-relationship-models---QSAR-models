@@ -1,0 +1,31 @@
+schema: '2.0'
+stages:
+  Split_data:
+    cmd: python src/step1_split_data.py
+    deps:
+    - path: Data/qsar_fish_toxicity.csv
+      md5: af7544332b3d55b425a4159d543190ff
+      size: 31204
+    outs:
+    - path: Data/test.csv
+      md5: 77aad0d3754ec097e776a8daa015889f
+      size: 1815
+    - path: Data/train.csv
+      md5: 0e2da0ef3520a6f18d60d7c536297176
+      size: 32962
+  Train_And_Evaluate_Model:
+    cmd: python src/step2_create_train_pipe.py
+    deps:
+    - path: Data/test.csv
+      md5: 77aad0d3754ec097e776a8daa015889f
+      size: 1815
+    - path: Data/train.csv
+      md5: 0e2da0ef3520a6f18d60d7c536297176
+      size: 32962
+    outs:
+    - path: Metrics/metrics.json
+      md5: be68411e73c0879916ed4116850e7713
+      size: 134
+    - path: Model/VotingRegressorModel.joblib
+      md5: c9fc8b7a81935cac5caee4b6cb6e9518
+      size: 7344818
