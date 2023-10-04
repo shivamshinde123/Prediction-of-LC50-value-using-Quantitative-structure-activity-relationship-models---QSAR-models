@@ -3,7 +3,10 @@ import logging
 import os
 import json
 import joblib
+import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -36,6 +39,90 @@ class ModelTraining:
 
     def __init__(self) -> None:
         pass
+
+    def plot_feat_importances(self, feat_imp_df):
+        """This method is used to create a plot between precision and recall.
+
+        Parameters
+        -----------
+
+        precisions: precisions
+        recalls: recalls
+
+        Returns
+        --------
+        None
+        """
+        try:
+            plt.figure(figsize=(12, 8))
+            sns.set_style('darkgrid')
+            plt.plot(feat_imp_df['features'], feat_imp_df['Importance'], marker='*', mec='r', color='k')
+            plt.title('Feature Importance')
+            plt.xlabel("Features")
+            plt.ylabel("Importance")
+
+            plots_folder = params['Plots']['Plot_Foler']
+            plot_name = params['Plots']['feat_importance_plotname']
+
+            Utility().create_folder(plots_folder)
+            plt.savefig(os.path.join(plots_folder, plot_name))
+
+        except Exception as e:
+            raise e
+
+    def find_feature_importance(self):
+        """This method is used to find the importance of input data features
+
+
+        Parameters
+        -----------
+
+        None
+
+        Returns
+        --------
+        None
+        """
+        try:
+            ## Loading the training and testing data
+            data_folder_name = params['Data']['Data_Folder']
+            train_data_name = params['Data']['Train_Data']
+            feat_importance_df = params['Data']['feat_importance']
+
+            train_data = pd.read_csv(os.path.join(data_folder_name,train_data_name))
+
+            X_train, y_train = train_data.drop('LC50(mol/L)', axis=1), train_data['LC50(mol/L)']
+
+            logger.info('Training data is loaded from the Data folder')
+
+            ## Creating a object for random forest regressor
+            rfr = RandomForestRegressor(bootstrap=True, oob_score=True, random_state=78)  
+
+            logger.info('Random forest regressor model created to find out feature importance')
+
+            ## Training the voting regressor using training data
+            rfr_model = rfr.fit(X_train, y_train)
+            logger.info('random forest regressor trained on training data')
+
+            ## Feature importances
+            feat_importance = pd.DataFrame()
+            feat_importance['features'] = X_train.columns
+            feat_importance['Importance'] = np.round(rfr_model.feature_importances_*100, 2)
+
+            feat_importance = feat_importance.sort_values(by='Importance', ascending=False)
+            logger.info('Feature importance dataframe created')
+
+            self.plot_feat_importances(feat_importance)
+            logger.info('Feature importance plot created and saved')
+
+            feat_importance.to_csv(os.path.join(data_folder_name,feat_importance_df))
+            logger.info('feat_importance dataframe saved as csv file')
+
+        except Exception as e:
+            logger.error(e)
+            raise e
+
+
 
     def model_training(self):
 
@@ -145,4 +232,5 @@ class ModelTraining:
 if __name__ == "__main__":
 
     mt = ModelTraining()
+    mt.find_feature_importance()
     mt.model_training()

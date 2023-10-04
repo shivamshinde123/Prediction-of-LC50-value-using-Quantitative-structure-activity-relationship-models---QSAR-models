@@ -4,6 +4,8 @@ stages:
     cmd: python src/step1_split_data.py
     deps:
       - Data/qsar_fish_toxicity.csv
+      - src/step0_utility_functions.py
+      - src/step1_split_data.py
     outs:
       - Data/train.csv
       - Data/test.csv
@@ -14,8 +16,12 @@ stages:
    deps: 
     - Data/train.csv
     - Data/test.csv
+    - src/step0_utility_functions.py
+    - src/step2_create_train_pipe.py
    outs:
+    - Data/feat_importance.csv
     - Model/VotingRegressorModel.joblib
     - Metrics/metrics.json
+    - Plots/feature_importance.png
 
 

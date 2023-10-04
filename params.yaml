@@ -3,7 +3,11 @@ Data:
   Input_Data_Location: qsar_fish_toxicity.csv
   Train_Data: train.csv
   Test_Data: test.csv
+  feat_importance: feat_importance.csv
 
+Plots:
+  Plot_Foler: Plots
+  feat_importance_plotname: feature_importance.png
 
 Logs:
   Logs_Folder: Logs
