@@ -1,0 +1,20 @@
+Data:
+  Data_Folder: Data
+  Input_Data_Location: qsar_fish_toxicity.csv
+  Train_Data: train.csv
+  Test_Data: test.csv
+
+
+Logs:
+  Logs_Folder: Logs
+  data_split: data_splitting.log
+  Model_Training: model_training_logs.log
+  Model_Evaluation: model_evaluation_logs.log
+  Make_Predictions: make_predictions.log
+
+Model:
+  Model_Folder: Model
+  Model_Name: VotingRegressorModel.joblib
+  Metrics:
+    Metrics_Folder: Metrics
+    Metrics_File: metrics.json
