@@ -1,6 +1,9 @@
 # virtual environment
 qsar_env/
 
+# catboost regressor metadata
+Experimentation/catboost_info
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
