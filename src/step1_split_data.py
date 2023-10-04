@@ -63,8 +63,8 @@ class DataSplit:
             test_data_name = params['Data']['Test_Data']
 
             logger.info('Training and testing data saved to a folder')
-            pd.concat([X_train, pd.DataFrame(y_train, columns=['LC50(mol/L)'])], axis=1).to_csv(os.path.join(data_folder_name,train_data_name))
-            pd.concat([X_test, pd.DataFrame(y_test, columns=['LC50(mol/L)'])], axis=1).to_csv(os.path.join(data_folder_name,test_data_name))
+            pd.concat([X_train, pd.DataFrame(y_train, columns=['LC50(mol/L)'])], axis=1).to_csv(os.path.join(data_folder_name,train_data_name), index=False)
+            pd.concat([X_test, pd.DataFrame(y_test, columns=['LC50(mol/L)'])], axis=1).to_csv(os.path.join(data_folder_name,test_data_name), index=False)
         
         except Exception as e:
             logger.error(e)
