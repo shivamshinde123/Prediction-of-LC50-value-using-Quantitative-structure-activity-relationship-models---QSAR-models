@@ -10,8 +10,9 @@ stages:
       md5: e8cef867cdd9005e4d14a289571f89c0
       size: 1280
     - path: src/step1_split_data.py
-      md5: b1633eba2d21c023d8f9d27b3fccc1d0
-      size: 2536
+      hash: md5
+      md5: 698565d064c86708625e6d8794ec7d83
+      size: 2684
     outs:
     - path: Data/test.csv
       md5: e59588a69894d14c6fe92975804e846d
