@@ -1,0 +1,5 @@
+outs:
+- md5: 747abb6e0237355bf1b9ba5dbf1538bc
+  size: 46461
+  hash: md5
+  path: image.png
