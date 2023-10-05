@@ -44,7 +44,9 @@ class DataSplit:
 
         try:
             ## Reading the data
-            qsar = pd.read_csv('Data/qsar_fish_toxicity.csv', sep=';', header=None)
+            data_folder_name = params['Data']['Data_Folder']
+            data_file_name  = params['Data']['Input_Data_Location']
+            qsar = pd.read_csv(os.path.join(data_folder_name, data_file_name), sep=';', header=None)
             qsar.columns = ['CICO', 'SM1_Dz(Z)', 'GATS1i', 'NdsCH', 'NdssC', 'MLOGP', 'LC50(mol/L)']
 
             ## Looking into the data
