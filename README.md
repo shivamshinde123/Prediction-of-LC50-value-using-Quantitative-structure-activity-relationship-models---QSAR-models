@@ -9,7 +9,7 @@
 
 # Problem Statement
 
-![Alt text](image.png)
+![Alt text](Docs\QSAR_Overview.jpg)
 
 Quantitative structure-activity relationship (QSAR) modeling pertains to the construction of
 predictive models of biological activities as a function of structural and molecular information of a compound library. Typical molecular parameters that are used to account for electronic properties, hydrophobicity, steric effects, and topology can be determined empirically through experimentation or theoretically via computational chemistry.  
