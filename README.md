@@ -1,4 +1,4 @@
-# Prediction of LC50 Value Using Quantitative Structure-Activity Relationship (QSAR) Models
+# Prediction of Lethal Concentration 50 (LC50) Value Using Quantitative Structure-Activity Relationship (QSAR) Models
 
 ![](https://img.shields.io/github/last-commit/shivamshinde123/Prediction-of-LC50-value-using-Quantitative-structure-activity-relationship-models---QSAR-models)
 ![](https://img.shields.io/github/languages/count/shivamshinde123/Prediction-of-LC50-value-using-Quantitative-structure-activity-relationship-models---QSAR-models)
